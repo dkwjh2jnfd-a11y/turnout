@@ -4,9 +4,27 @@ import { supabase } from '../lib/supabaseClient.js'
 export default function AuthScreen() {
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
-  // idle | sending | sent | verifying | error
+  // idle | sending | sent | verifying | error | guest-loading
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
+
+  async function handleGuestSignIn() {
+    setStatus('guest-loading')
+    setError('')
+    // Testing-mode entry point: no email required at all. Lets anyone try
+    // Turnout on their own phone right now, before real email delivery
+    // (a verified sending domain) is set up for the public pilot. Every
+    // RLS policy in the schema checks `to authenticated`, which an
+    // anonymous session satisfies, so games/RSVPs/etc. all work normally —
+    // this identity just isn't recoverable if they clear their browser or
+    // switch devices, since there's no email tied to it.
+    const { error: authError } = await supabase.auth.signInAnonymously()
+    if (authError) {
+      setStatus('error')
+      setError(authError.message)
+      return
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -128,6 +146,24 @@ export default function AuthScreen() {
               {status === 'sending' ? 'Sending code…' : 'Send sign-in code'}
             </button>
             <p className="mt-1 text-center text-xs text-white/40">No password needed — we'll email you a code.</p>
+
+            <div className="my-1 flex items-center gap-3 text-xs text-white/30">
+              <div className="h-px flex-1 bg-white/10" />
+              or
+              <div className="h-px flex-1 bg-white/10" />
+            </div>
+
+            <button
+              type="button"
+              onClick={handleGuestSignIn}
+              disabled={status === 'guest-loading'}
+              className="rounded-lg border border-white/15 px-4 py-2.5 text-sm font-semibold text-white/80 transition-opacity disabled:opacity-60"
+            >
+              {status === 'guest-loading' ? 'Getting you in…' : 'Try it now — no email needed'}
+            </button>
+            <p className="text-center text-xs text-white/40">
+              Testing mode — pick a name and start using Turnout right away on this device.
+            </p>
           </form>
         )}
       </div>
