@@ -1,0 +1,17 @@
+{
+  "name": "Turnout — Jersey Shore Pickup Games",
+  "short_name": "Turnout",
+  "description": "Find and post pickup games, tee times, and rec leagues on the Jersey Shore.",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A1630",
+  "theme_color": "#0A1630",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

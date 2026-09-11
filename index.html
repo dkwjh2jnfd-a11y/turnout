@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+    <meta name="theme-color" content="#0A1630" />
+    <title>Turnout — Jersey Shore Pickup Games</title>
+    <meta name="description" content="Find and post pickup games, tee times, and rec leagues on the Jersey Shore." />
+
+    <!-- Installable-app setup: lets a viewer add Turnout to their phone's home
+         screen as a real app icon (Android: "Install app"; iOS: Share > Add to
+         Home Screen). See README.md "Install it like an app". -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Turnout" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!--
+      TURNOUT CONFIG
+      config.js sets window.__TURNOUT_CONFIG__ with your Supabase project's
+      URL and public anon key. Edit public/config.js (or, after building,
+      dist/config.js) — you never need to touch or rebuild the app itself
+      to connect your own database. See README.md.
+    -->
+    <script src="/config.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
